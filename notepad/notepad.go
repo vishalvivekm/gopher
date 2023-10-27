@@ -30,7 +30,7 @@ func newPad() (*notepad, *bufio.Scanner) {
 		delMsg:  "[OK] All notes were successfully deleted",
 		listFmt: "[Info] %d: %s",
 		errFul:  "[Error] Notepad is full",
-		errMpt:  "[Info] Notepad is empty",
+		errMpt:  "[Info] Notepad is empty. Create Notes using create <your-note> command :)",
 		errCmd:  "[Error] Unknown command",
 		errVal:  "[Error] Missing note argument",
 		exitMsg: "[Info] Bye!", exitCmd: "exit",
@@ -104,4 +104,5 @@ mainLoop:
 func main() {
 	lilPad, scanner := newPad()
 	run(lilPad, scanner)
+	// That's it :))
 }
