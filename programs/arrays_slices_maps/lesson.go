@@ -16,7 +16,7 @@ func operation(a int, b int) (sum int, diff int) { // return values already decl
 	return // #z it eliminates the need of mentioning the variable names from the return statement here
 }
 func main() {
-	sum, difference := operation(20, 10)
+	sum, difference := operation(20, 10) // function returning two values, which are being stored in sum, difference
 	fmt.Println(sum, difference)
 }
 

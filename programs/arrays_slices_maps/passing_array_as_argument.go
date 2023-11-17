@@ -8,7 +8,7 @@ func calcSquare(numbers []int) ([]int, bool) {
 	// [3]int and []int are distinct
 	squares := []int{}
 	for _, v := range numbers {
-		squares = append(squares, v*v)
+		squares = append(squares, v*v) // append(<slice>, <value>)
 	}
 	return squares, true
 }
@@ -42,3 +42,9 @@ In contrast, if we had defined the function to accept an array (func calcSquare(
 
 Using slices in function arguments is often preferred in Go because it allows for more flexibility in handling arrays of different lengths.
 */
+
+// append(<slice>, <value>) function
+
+// func append(s []T, vs ...T) []T // returns a slice and takes as arguments a slice and the elements
+//slice = append(slice, element-1, element-2)
+//slice = append(slice, 10, 20, 30)
