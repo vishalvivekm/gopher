@@ -1,0 +1,61 @@
+:wq - save the changes and quit
+:q! - quit without saving my changes ( discard changes )(also don't start with !, it's a command)
+ 
+if changes are made and you try to quit like :q, vim won't allow that, you'll have to specify whether or not you wanna preserve the changes or discard them
+
+dd - to delete that line
+yy - to copy the line
+p - to paste above the line
+P -to copy below the line the cursor is currently on
+^ - to move in the start of the current line
+$ - to move in the end of the current line
+
+G - to move to the last line
+gg - to move to the line at the top
+
+d3d - to delete 3 lines from current one
+u - undo
+ctrl+r - redo
+
+/<word> - to find its occurence from the top ( use n and N to go to down and up )
+?<word> - to do same as /<word> but search in lines below the current one
+
+from command mode to insert mode
+i - before the cursor
+a - after the cursor
+o - newline below
+
+I - goes into insert mode at begining of the line
+A - at the end of the line
+O - newline above
+:set number - see lines ( in last line mode)
+
+7j - go 7 lines down
+2k - go 2 lines up
+4l - go 4 chars right
+7h - go 7 chars left
+
+set relativenumber - magic man7h - go 7 chars left
+
+set relativenumber - magic man7h - go 7 chars left
+
+set relativenumber - magic man7h - go 7 chars left
+
+set relativenumber - magic man7h - go 7 chars left
+
+set relativenumber - magic man7h - go 7 chars left
+
+set relativenumber - magic man7h - go 7 chars left
+
+set relativenumber - magic man
+
+
+ 
+almost any command can be combined with the numbers and they work like a charm.
+
+in CMD mode, v to enter visual mode, then
+move right and left to select chars,
+d - to delete the selected chars
+y - to copy 
+
+5u - go 5 undo back
