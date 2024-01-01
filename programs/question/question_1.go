@@ -9,6 +9,10 @@ func calculate(a int, b int) []float64 {
 	quot := float64(a) / float64(b)
 
 	results :=[]float64{sum, diff, mult, quot}
+	/* result := make([]float64, 0)
+	return append(results, float64(a+b), float64(a-b), float64(a*b), float64(a/b))
+
+	*/
 	return results
 }
 
