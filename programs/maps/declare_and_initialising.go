@@ -54,3 +54,5 @@ func main() {
 
 	// how to truncate a map
 }
+
+// set a map to an empty map or iteratively delete the key-value pairs in it

@@ -6,21 +6,21 @@
 package main
 
 import (
-    "fmt"
-    "log"
-    "os"
+	"fmt"
+	"log"
+	"os"
 )
 
 func main() {
-    file, err := os.Create("text.txt") // create and open 'text.txt' in read-and-write mode
-    if err != nil {
-        log.Fatal(err) // exit the program if there's an unexpected error
-    }
-    defer file.Close() // close the file before exiting the program ( i.e. when the main() finishes, even if there's any error)
+	file, err := os.Create("text.txt") // create and open 'text.txt' in read-and-write mode
+	if err != nil {
+		log.Fatal(err) // exit the program if there's an unexpected error
+	}
+	defer file.Close() // close the file before exiting the program ( i.e. when the main() finishes, even if there's any error)
 
-    if _, err := fmt.Fprintln(file, "Hello World!"); err != nil {
-        log.Fatal(err)
-    }
+	if _, err := fmt.Fprintln(file, "Hello World!"); err != nil {
+		log.Fatal(err)
+	}
 }
 
 // https://www.joeshaw.org/dont-defer-close-on-writable-files/

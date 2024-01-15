@@ -15,25 +15,26 @@ func main() {
 	fmt.Println(arr)
 }
 */
-// passing by value 
+// passing by value
 
 func modify(numbers [3]int) {
 	for i := range numbers {
-			numbers[i] -= 5
+		numbers[i] -= 5
 	}
 }
 func main() {
 	arr := [3]int{10, 20, 30}
 	fmt.Println(arr)
-    modify(arr) //cannot use arr (type [3]int) as type *[3]int in argument to modify, to fix: modify(&arr)
+	modify(arr) //cannot use arr (type [3]int) as type *[3]int in argument to modify, to fix: modify(&arr)
+	// modify(&arr) , then signature changes to: func modify(numbers *[3]int ) {
 	fmt.Println(arr)
+
 }
 
 /*
 The ... notation after arr tells Go to "unpack" the elements of the arr slice and pass them as separate arguments to the modify function.
 
 So, if arr is [10, 20, 30], modify(arr...) is equivalent to calling modify(10, 20, 30). It passes each element of the slice as a separate argument to the modify function*/
-
 
 /*
 func modify(s *string) {
@@ -60,7 +61,7 @@ func main() {
 	modify(ascii_codes)
 	fmt.Println(ascii_codes)
 }
-output: 
+output:
 map[A:65]
 map[A:100]
 
