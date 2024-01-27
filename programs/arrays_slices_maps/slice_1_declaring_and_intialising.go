@@ -10,7 +10,7 @@ func main() {
 	// [:b] - from the begining till b ( excluding b)
 	// [a:] - from the a ( including a) till the very end hehe
 	fmt.Println(cap(slice1)) // 9
-	fmt.Println(slice1)      // [2 3 4 5 6 7 8]
+	fmt.Println(slice1)      // [2 3 4 5 6 7]
 	fmt.Println(len(slice1)) // 7
 	fmt.Println(cap(slice1))
 
