@@ -19,7 +19,8 @@ fmt.Println(val, ok)
 val, ok = <-ch
 fmt.Println(val, ok)
 }
-package main
+
+/*package main
 
 import (
 "fmt"
@@ -53,4 +54,4 @@ s.Done()
 
 }
 // while sending if the buffer limti is exceeded or while receiving from a empty channel - block, deadlock
-
+*/

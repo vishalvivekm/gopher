@@ -22,4 +22,4 @@ fmt.Println("Function took: ", elapsed)
 }
 
 
-// a example of concurrent program, which takes 10000 seconds to execute
+// a example of a sequential program, which takes 10000 seconds to execute

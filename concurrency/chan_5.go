@@ -14,7 +14,7 @@ ch := make( chan int, 10)
 close(ch)
 // ch <- 12 // panic: send on closed channel
 
-close(ch) // panic: close of closed channel 
+// close(ch) // panic: close of closed channel 
 }
 
 // buffered doesn't block another go routines until we cross the buffer limit
