@@ -17,10 +17,13 @@ func main() {
 import "fmt"
 
 func main() {
-    defer fmt.Println("Will be printed anyway!")
+    defer fmt.Println("Will be printed anyway!") // Recover
     panic("Something has gone wrong!")
 }
 
 // Output:
 // Will be printed anyway!
 // panic: Something has gone wrong!*/
+
+// VVI: The panic() func has no effect on the list of deferred calls (if we declare it before the panic).
+// this is useful in recovering the panic state, see recover.go

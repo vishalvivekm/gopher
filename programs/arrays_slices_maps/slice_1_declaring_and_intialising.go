@@ -7,7 +7,7 @@ func main() {
 	// method 1
 	arr := [10]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
 	slice1 := arr[1:7] // array[a:b], including a but excluding b, length of the slice = b-a,
-	// [:b] - from the begining till b ( excluding b)
+	// [:b] - from the beginning till b ( excluding b)
 	// [a:] - from the a ( including a) till the very end hehe
 	fmt.Println(cap(slice1)) // 9
 	fmt.Println(slice1)      // [2 3 4 5 6 7]
@@ -29,7 +29,7 @@ func main() {
 	slice3 := make([]int, 4, 8) // a
 	fmt.Println(slice3)
 	for index, _ := range slice3 {
-		slice3[index] = index // notive we won't use := here as slice3 has already be defined to have int values
+		slice3[index] = index // notice we won't use := here as slice3 has already be defined to have int values
 		// fmt.Printf("%d, ", slice3[index])
 	}
 	fmt.Println(slice3)

@@ -1,0 +1,10 @@
+cryptit ( module at github.com/vishalvivekm/cryptit)
+------ encrypt ( encrypt package )
+			-- algorithm.go
+------ decrypt ( decrypt package)
+			-- algorithm.go
+main.go (use the packages)
+
+
+A -> D 
+M -> P

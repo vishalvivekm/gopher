@@ -20,5 +20,5 @@ func main() {
 	fmt.Println(sum, difference)
 }
 
-//>>> go run main.go
+//>>> go run panic.go
 //30 10

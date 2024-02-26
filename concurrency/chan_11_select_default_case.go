@@ -18,6 +18,8 @@ select {
     fmt.Println(val1)
   case val2 := <- ch2:
     fmt.Println(val2)
+  default: // default prevents select from blocking forever
+    fmt.Println("Executed default block")
 }
 time.Sleep(1 * time.Second)
 }
@@ -37,3 +39,9 @@ ch1 <- "Channel-1"
 // to make the select non-blocking: default case, which will execute if all the other cases are blocked
 
 // to make the select non-blocking: default case, which will execute if all the other cases are blocked i.e default case will be executed if no send or receive opearation is ready on any of the case statements.
+/*
+
+
+
+*/
+// we can add break keyword here in cases in select statement
