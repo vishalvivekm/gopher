@@ -1,0 +1,20 @@
+cryptit ( module at github.com/vishalvivekm/cryptit)
+------ encrypt ( encrypt package )
+			-- algorithm.go
+------ decrypt ( decrypt package)
+			-- algorithm.go
+main.go (use the packages)
+
+
+A -> D 
+M -> P
+ 
+now let's import this module to ../repo_and_module/learn/
+
+to import local modules: replace directives:
+
+go mod edit -replace github.com/vishalvivekm/cryptit=../../cryptit
+
+go mod tidy
+
+// replace directives can be used to replace the complete paths of modules, not package
