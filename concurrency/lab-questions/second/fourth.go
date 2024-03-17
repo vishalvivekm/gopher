@@ -65,7 +65,7 @@ import "fmt"
 
 func main() {
 	jobs := make(chan int, 5)
-	done := make(chan bool)
+	done := make(chan bool) // unbuffered: meaning blocking
 
 	go func() {
 		for {
@@ -74,7 +74,7 @@ func main() {
 				fmt.Println("received job", j)
 			} else {
 				fmt.Println("received all jobs")
-				done <- true
+				done <- true // sends to unbuffered channel done
 				return
 			}
 		}
@@ -90,7 +90,7 @@ func main() {
 
 	fmt.Println("sent all jobs")
 
-	<-done
+	<-done // will be blocking until someone sends to it
 }
 
 /*
@@ -131,4 +131,20 @@ func main() {
 
 
 This will allow the goroutine that is receiving values from the jobs channel to exit the loop when it receives a value with the more flag set to false.
+*/
+
+/*
+chad gpt explains the code:
+In this code, the done channel is used to signal when all jobs have been received and processed. Let me explain how the code works:
+
+    It creates two channels: jobs and done.
+    A goroutine is started with an anonymous function, which continuously listens on the jobs channel for incoming jobs. If there are more jobs to receive (more is true), it prints a message indicating the received job. If there are no more jobs to receive (more is false), it prints a message indicating that all jobs have been received and sends a signal on the done channel.
+    In the main function, a loop sends three jobs to the jobs channel and prints a message for each sent job.
+    After sending all jobs, the jobs channel is closed, indicating that no more jobs will be sent.
+    It prints a message indicating that all jobs have been sent.
+    Finally, it waits for a signal on the done channel using <-done. This is a blocking operation, meaning the program will wait at this line until it receives a value from the done channel. Once it receives a value (in this case, true), it proceeds to the end of the main function and terminates the program.
+
+So, <-done is used to synchronize the main goroutine with the goroutine processing the jobs, ensuring that the main goroutine waits until all jobs have been processed before exiting.
+
+
 */

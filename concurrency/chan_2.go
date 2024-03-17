@@ -19,6 +19,8 @@ func sell(ch chan int, s *sync.WaitGroup) {
 ch <- 10
 ch <- 11
 ch <- 12
+//close(ch) : don't forget to use close() while using for range in receiver goroutine
+
 //blocking line:  // ch <- 13 fatal error: all goroutines are asleep - deadlock!, if go buy() is invoked above this , no deadlock
 go buy(ch, s)
 fmt.Println("Sent all the data to the channel")
@@ -29,8 +31,11 @@ func buy(ch chan int, s *sync.WaitGroup ) {
 
 fmt.Println("Waiting for data")
 fmt.Println("received from the channel: ", <-ch)
+//for cal := range ch {
+ //fmt.Println(cal)
+//}
 s.Done()
 
 }
-// while sending if the buffer limti is exceeded or while receiving from a empty channel - block, deadlock
+// while sending if the buffer limit is exceeded or while receiving from a empty channel - block, deadlock
 
