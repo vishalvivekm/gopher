@@ -4,7 +4,7 @@ Go: map || slices
  - functions in `encoding/json` package lets us encode / decode JSON maps and slices
 
 > `serialization`: encoding to json format
-- json.Marchal()
+- json.Marshal()
 - json.MarshalIndent()
 
 
