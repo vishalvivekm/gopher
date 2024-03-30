@@ -28,7 +28,7 @@ func (app *App) handleRoutes() {
 	app.Router.HandleFunc("/task/{id}", app.readTask).Methods("GET")
 	app.Router.HandleFunc("/task", app.createTask).Methods("POST")
 	//app.Router.HandleFunc("/task/{id}", app.updateTask).Methods("PUT")
-	//app.Router.HandleFunc("/task/{id}", app.deleteTask).Methods("DELETE")
+	app.Router.HandleFunc("/task/{id}", app.deleteTask).Methods("DELETE")
 }
 
 func (app *App) Initialise(initialTasks []Task, id int) {
@@ -49,12 +49,13 @@ func (app *App) Run(address string) {
 }
 
 func sendResponse(w http.ResponseWriter, statusCode int, payload interface{}) {
-	
+	//
 	response, err := json.Marshal(payload)
 	if err != nil {
 		sendError(w, http.StatusInternalServerError, fmt.Sprintf("cant marshal payload, err: %v", err.Error()))
 		return
 	}
+	//log.Println(string(response))
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(statusCode)
 
@@ -72,13 +73,13 @@ func sendError(w http.ResponseWriter, statusCode int, err string) {
 }
 
 func (app *App) getTasks(writer http.ResponseWriter, request *http.Request) {
-	
+	//
 	sendResponse(writer, http.StatusOK, tasks)
 
 }
 
 func (app *App) createTask(writer http.ResponseWriter, r *http.Request) {
-	
+	//
 	//var reqBody map[string]interface{}
 	var t Task
 	err := json.NewDecoder(r.Body).Decode(&t)
@@ -95,7 +96,7 @@ func (app *App) readTask(writer http.ResponseWriter, request *http.Request) {
 
 	vars := mux.Vars(request) // mux.Vars(r) returns route vars for current request, if any
 	key := vars["id"]         // var is a map[string]string, values are always string, localhost:10000/tasks/2, type of 2 would be string in vars["id"]
-	log.Printf("%v, %T", key, key)
+	//log.Printf("%v, %T", key, key)
 	id, err := strconv.Atoi(key)
 	if err != nil {
 		sendError(writer, http.StatusBadRequest, "invalid task ID")
@@ -119,11 +120,27 @@ func (app *App) readTask(writer http.ResponseWriter, request *http.Request) {
 
 }
 
-//
 //func (app *App) updateTask(writer http.ResponseWriter, request *http.Request) {
-//	// your code goes here
+
 //}
-//
-//func (app *App) deleteTask(writer http.ResponseWriter, request *http.Request) {
-//	// your code goes here
-//}
+
+func (app *App) deleteTask(writer http.ResponseWriter, request *http.Request) {
+	vars := mux.Vars(request)
+	key := vars["id"]
+
+	id, err := strconv.Atoi(key)
+	if err != nil {
+		sendError(writer, http.StatusBadRequest, "invalid task ID")
+		return
+	}
+	var t Task
+	t.ID = id
+	err = t.deleteTask()
+	if err != nil {
+		sendError(writer, http.StatusNotFound, err.Error())
+		return
+	}
+	var successResponse = map[string]interface{}{"result": "successful deletion"}
+	sendResponse(writer, http.StatusOK, successResponse)
+
+}

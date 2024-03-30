@@ -139,74 +139,73 @@ func TestCreateTask(t *testing.T) {
 	}
 }
 
-//func TestUpdateTask(t *testing.T) {
-//	// Test with valid task ID and payload
-//	task := tasks[1]
-//	task.Name = "Collect requirements"
-//	payload, _ := json.Marshal(task)
-//	request, _ := http.NewRequest("PUT", "/task/2", bytes.NewBuffer(payload))
-//	response := sendRequest(request)
-//	checkStatusCode(t, http.StatusOK, response.Code)
+//	func TestUpdateTask(t *testing.T) {
+//		// Test with valid task ID and payload
+//		task := tasks[1]
+//		task.Name = "Collect requirements"
+//		payload, _ := json.Marshal(task)
+//		request, _ := http.NewRequest("PUT", "/task/2", bytes.NewBuffer(payload))
+//		response := sendRequest(request)
+//		checkStatusCode(t, http.StatusOK, response.Code)
 //
-//	var returnedTask Task
-//	json.Unmarshal(response.Body.Bytes(), &returnedTask)
+//		var returnedTask Task
+//		json.Unmarshal(response.Body.Bytes(), &returnedTask)
 //
-//	if returnedTask.ID != task.ID {
-//		t.Errorf("handler returned unexpected ID for task: got %v want %v", returnedTask.ID, task.ID)
+//		if returnedTask.ID != task.ID {
+//			t.Errorf("handler returned unexpected ID for task: got %v want %v", returnedTask.ID, task.ID)
+//		}
+//		if returnedTask.Name != task.Name {
+//			t.Errorf("handler returned unexpected Name for task: got %v want %v", returnedTask.Name, task.Name)
+//		}
+//
+//		// Test with invalid task ID
+//		request, _ = http.NewRequest("PUT", "/task/abc", bytes.NewBuffer(payload))
+//		response = sendRequest(request)
+//		checkStatusCode(t, http.StatusBadRequest, response.Code)
+//
+//		var errorResponse map[string]interface{}
+//		json.Unmarshal(response.Body.Bytes(), &errorResponse)
+//
+//		if errorResponse["error"] != "invalid task ID" {
+//			t.Errorf("handler returned unexpected error message: got %v want %v", errorResponse["error"], "invalid task ID")
+//		}
+//
+//		// Test with invalid task payload
+//		request, _ = http.NewRequest("PUT", "/task/1", bytes.NewBuffer([]byte("invalid payload")))
+//		response = sendRequest(request)
+//		checkStatusCode(t, http.StatusBadRequest, response.Code)
+//
+//		json.Unmarshal(response.Body.Bytes(), &errorResponse)
+//
+//		if errorResponse["error"] != "Invalid request payload" {
+//			t.Errorf("handler returned unexpected error message: got %v want %v", errorResponse["error"], "Invalid request payload")
+//		}
 //	}
-//	if returnedTask.Name != task.Name {
-//		t.Errorf("handler returned unexpected Name for task: got %v want %v", returnedTask.Name, task.Name)
-//	}
-//
-//	// Test with invalid task ID
-//	request, _ = http.NewRequest("PUT", "/task/abc", bytes.NewBuffer(payload))
-//	response = sendRequest(request)
-//	checkStatusCode(t, http.StatusBadRequest, response.Code)
-//
-//	var errorResponse map[string]interface{}
-//	json.Unmarshal(response.Body.Bytes(), &errorResponse)
-//
-//	if errorResponse["error"] != "invalid task ID" {
-//		t.Errorf("handler returned unexpected error message: got %v want %v", errorResponse["error"], "invalid task ID")
-//	}
-//
-//	// Test with invalid task payload
-//	request, _ = http.NewRequest("PUT", "/task/1", bytes.NewBuffer([]byte("invalid payload")))
-//	response = sendRequest(request)
-//	checkStatusCode(t, http.StatusBadRequest, response.Code)
-//
-//	json.Unmarshal(response.Body.Bytes(), &errorResponse)
-//
-//	if errorResponse["error"] != "Invalid request payload" {
-//		t.Errorf("handler returned unexpected error message: got %v want %v", errorResponse["error"], "Invalid request payload")
-//	}
-//}
-//
-//func TestDeleteTask(t *testing.T) {
-//	// Test with valid task ID
-//	request, _ := http.NewRequest("DELETE", "/task/3", nil)
-//	response := sendRequest(request)
-//	checkStatusCode(t, http.StatusOK, response.Code)
-//
-//	var responseBody map[string]string
-//	json.Unmarshal(response.Body.Bytes(), &responseBody)
-//
-//	if responseBody["result"] != "successful deletion" {
-//		t.Errorf("handler returned unexpected response: got %v want %v", responseBody["result"], "successful deletion")
-//	}
-//
-//	// Test with non-existing task ID
-//	request, _ = http.NewRequest("DELETE", "/task/10", nil)
-//	response = sendRequest(request)
-//	checkStatusCode(t, http.StatusNotFound, response.Code)
-//
-//	var errorResponse map[string]interface{}
-//	json.Unmarshal(response.Body.Bytes(), &errorResponse)
-//
-//	if errorResponse["error"] != "task not found" {
-//		t.Errorf("handler returned unexpected error message: got %v want %v", errorResponse["error"], "task not found")
-//	}
-//}
+func TestDeleteTask(t *testing.T) {
+	// Test with valid task ID
+	request, _ := http.NewRequest("DELETE", "/task/3", nil)
+	response := sendRequest(request)
+	checkStatusCode(t, http.StatusOK, response.Code)
+
+	var responseBody map[string]string
+	json.Unmarshal(response.Body.Bytes(), &responseBody)
+
+	if responseBody["result"] != "successful deletion" {
+		t.Errorf("handler returned unexpected response: got %v want %v", responseBody["result"], "successful deletion")
+	}
+
+	// Test with non-existing task ID
+	request, _ = http.NewRequest("DELETE", "/task/10", nil)
+	response = sendRequest(request)
+	checkStatusCode(t, http.StatusNotFound, response.Code)
+
+	var errorResponse map[string]interface{}
+	json.Unmarshal(response.Body.Bytes(), &errorResponse)
+
+	if errorResponse["error"] != "task not found" {
+		t.Errorf("handler returned unexpected error message: got %v want %v", errorResponse["error"], "task not found")
+	}
+}
 
 func checkStatusCode(t *testing.T, expectedStatusCode int, actualStatusCode int) {
 	if expectedStatusCode != actualStatusCode {

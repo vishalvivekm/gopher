@@ -39,11 +39,16 @@ func (t *Task) getTask() error {
 	return errors.New("task not found")
 }
 
-//
-//func (t *Task) updateTask() error {
-//	// your code goes here
-//}
-//
-//func (t *Task) deleteTask() error {
-//	// your code goes here
-//}
+//	func (t *Task) updateTask() error {
+//		// your code goes here
+//	}
+func (t *Task) deleteTask() error {
+	for index, val := range tasks {
+		if val.ID == t.ID {
+			tasks[index] = Task{}
+			return nil
+		}
+	}
+	//return fmt.Errorf("no task with id, %v", t.ID)
+	return errors.New("task not found")
+}
