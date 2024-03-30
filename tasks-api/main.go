@@ -27,7 +27,7 @@ func (app *App) handleRoutes() {
 	app.Router.HandleFunc("/tasks", app.getTasks).Methods("GET")
 	app.Router.HandleFunc("/task/{id}", app.readTask).Methods("GET")
 	app.Router.HandleFunc("/task", app.createTask).Methods("POST")
-	//app.Router.HandleFunc("/task/{id}", app.updateTask).Methods("PUT")
+	app.Router.HandleFunc("/task/{id}", app.updateTask).Methods("PUT")
 	app.Router.HandleFunc("/task/{id}", app.deleteTask).Methods("DELETE")
 }
 
@@ -120,9 +120,30 @@ func (app *App) readTask(writer http.ResponseWriter, request *http.Request) {
 
 }
 
-//func (app *App) updateTask(writer http.ResponseWriter, request *http.Request) {
+func (app *App) updateTask(writer http.ResponseWriter, request *http.Request) {
+	vars := mux.Vars(request)
+	key := vars["id"]
 
-//}
+	id, err := strconv.Atoi(key)
+	if err != nil {
+		sendError(writer, http.StatusBadRequest, "invalid task ID")
+		return
+	}
+	var t Task
+	t.ID = id
+
+	err = json.NewDecoder(request.Body).Decode(&t)
+	if err != nil {
+		sendError(writer, http.StatusBadRequest, "Invalid request payload")
+		return
+	}
+	err = t.updateTask()
+	if err != nil {
+		sendError(writer, http.StatusNotFound, err.Error())
+		return
+	}
+	sendResponse(writer, http.StatusOK, t)
+}
 
 func (app *App) deleteTask(writer http.ResponseWriter, request *http.Request) {
 	vars := mux.Vars(request)

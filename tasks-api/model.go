@@ -17,7 +17,7 @@ func CreateInitialTasks() ([]Task, int) {
 }
 
 func getTasks() ([]Task, error) {
-	// your code goes here
+
 	return tasks, nil
 }
 
@@ -39,9 +39,15 @@ func (t *Task) getTask() error {
 	return errors.New("task not found")
 }
 
-//	func (t *Task) updateTask() error {
-//		// your code goes here
-//	}
+func (t *Task) updateTask() error {
+	for index, val := range tasks {
+		if val.ID == t.ID {
+			tasks[index] = *t
+			return nil
+		}
+	}
+	return errors.New("task not found")
+}
 func (t *Task) deleteTask() error {
 	for index, val := range tasks {
 		if val.ID == t.ID {
