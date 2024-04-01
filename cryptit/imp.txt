@@ -1,0 +1,2 @@
+to export outside of the package: make sure identifier starts with a capital letter
+if it's lowercase, it can be used only inside that package

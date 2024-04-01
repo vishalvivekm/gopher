@@ -1,7 +1,10 @@
 // the output
 
 package main
-import "fmt"
+import (
+"fmt"
+"log"
+)
 
 type Student interface {
         getPercentage() int
@@ -27,7 +30,7 @@ func printPercentage(s Student) {
 
 func main() {
         grades := []int{90, 75, 80}
-        u := Undergrad{"Ross", grades}
-        printPercentage(u)
+        u, err := Undergrad{"Ross", grades}
+		  printPercentage(u)
 }
 

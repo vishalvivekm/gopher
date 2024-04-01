@@ -47,6 +47,22 @@ func (t *Task) updateTask() error {
 		}
 	}
 	return errors.New("task not found")
+
+	// aliter, not better than what I have above :)
+	// to test: uncomment above code and run with following code, works fine
+	/*
+	   id := t.ID
+	   for index, task := range tasks {
+	       if task.ID == id {
+	           task.DueDate = t.DueDate
+	           task.Name = t.Name
+	           task.Description = t.Description
+	           tasks[index] = task
+	           return nil
+	       }
+	   }
+	   return errors.New("task not found")
+	*/
 }
 func (t *Task) deleteTask() error {
 	for index, val := range tasks {
@@ -57,4 +73,22 @@ func (t *Task) deleteTask() error {
 	}
 	//return fmt.Errorf("no task with id, %v", t.ID)
 	return errors.New("task not found")
+
+	// aliter,
+
+	/*
+	   id := t.ID
+	   indexToBeDeleted := -1
+	   for index, task := range tasks {
+	       if task.ID == id {
+	           indexToBeDeleted = index
+	           break
+	       }
+	   }
+	   if indexToBeDeleted == -1 {
+	       return errors.New("task not found")
+	   }
+	   tasks = append(tasks[:indexToBeDeleted], tasks[indexToBeDeleted+1:]...)
+	   return nil
+	*/
 }

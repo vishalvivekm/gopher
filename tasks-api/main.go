@@ -73,7 +73,11 @@ func sendError(w http.ResponseWriter, statusCode int, err string) {
 }
 
 func (app *App) getTasks(writer http.ResponseWriter, request *http.Request) {
-	//
+	tasks, err := getTasks()
+	if err != nil {
+		sendError(writer, http.StatusInternalServerError, err.Error())
+		return
+	}
 	sendResponse(writer, http.StatusOK, tasks)
 
 }
@@ -109,8 +113,9 @@ func (app *App) readTask(writer http.ResponseWriter, request *http.Request) {
 	//} redundant,coverd by model.go/getTask, context: id can be even less than tasks[0].id i.e. 0, or -1 or 45,
 	// simple logic: iterate through tasks and look for id, if not found return "task not found"
 
-	var t Task
-	t.ID = id
+	//var t Task
+	//t.ID = id
+	t := Task{ID: id}
 	if err := t.getTask(); err != nil {
 		sendError(writer, http.StatusNotFound, err.Error())
 		return

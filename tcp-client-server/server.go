@@ -15,7 +15,7 @@ const (
 func main() {
 	listener, err := net.Listen("tcp", address+port) // initiate TCP server socket on adr 127.0.0.1:8080
 	if err != nil {
-		log.Fatal("cannot open server socket, ", err)
+		log.Fatal("cannot open server socket, ", err.Error())
 	}
 	defer listener.Close()
 	log.Printf("Server socker is listening on %s%s\n", address, port)
