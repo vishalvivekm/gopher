@@ -10,7 +10,7 @@ func main() {
 	log.Info("starting server..")
 	http.HandleFunc("/api", Handler)
 
-	log.Fatalln(http.ListenAndServe(":8080", nil))
+	log.Fatalln(http.ListenAndServe(":9090", nil))
 }
 
 func Handler(writer http.ResponseWriter, request *http.Request) {
