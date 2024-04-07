@@ -4,9 +4,8 @@ services:
   web:
     build: .
     ports:
-        - 9090:9090
+        - "9090:9090"
     environment:
-        LOCAL: "true"
         PORT: 9090
         REDIS_URL: redis
   redis:
