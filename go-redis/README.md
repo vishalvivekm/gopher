@@ -1,7 +1,23 @@
+To run locally: 
+```
+docker compose up --build
+```
+
+from another terminal session:
+- To see full response:
+```
+curl localhost:9090/api\?q=san%20francisco -v | jq
+```
+- To avoid full response and just check cacheHit:
+```
+curl localhost:9090/api\?q=san%20francisco -v | jq | grep cache
+```
+> each 15 seconds the cached value expires, so running this a couple of times, can see the working of this program.
+<details><summary>curl reqs and redis-details</summary>
 <details><summary>curl reqs</summary>
 
 ```bash
-curl localhost:8080/api -v
+curl localhost:9090/api -v
 curl  curl https://nominatim.openstreetmap.org/search?q=\san%20francisco\&format\=json | jq
 
 curl localhost:9090/api\?q=san%20francisco | jq
@@ -54,3 +70,5 @@ value, err := a.cache.Get(ctx, q).Result()
 ...
 */
 ```
+
+</details>
