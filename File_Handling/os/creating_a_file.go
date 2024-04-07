@@ -23,3 +23,7 @@ func main() {
 // to delete file:
 //os.Remove() - a single file. Also: will error if directory isn't empty,
 //os.RemoveAll() - all the folders and file inside the path
+
+// to create dir
+// os.Mkdir  // throws error if the directory already exists
+// os.MkdirAll - directories and subdirectories, doesn't throw error if dir already exist
