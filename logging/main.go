@@ -6,7 +6,7 @@ import (
 
 /*
 Trace
-Debuf
+Debug
 Info
 Warn
 Error

@@ -13,5 +13,4 @@ func rotate(nums []int, k int) []int {
 	nums = append(nums[n-k:n], nums[0:n-k]...)
 	// fmt.Println(nums)
 	return nums
-
 }

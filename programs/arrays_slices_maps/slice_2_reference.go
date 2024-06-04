@@ -14,5 +14,5 @@ func main() {
 }
 
 //output:
-// essence is that : unlike arrays, slice is a reference to a memory address, so chaning an element
+// essence is that : unlike arrays, slice is a reference to a memory address, so changing an element
 // in the slice also changes the element in the underlying array

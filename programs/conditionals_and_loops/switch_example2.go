@@ -11,4 +11,4 @@ default:
 fmt.Println("greater than 30")
 }
 }
-output: equal to 30
+//output: equal to 30

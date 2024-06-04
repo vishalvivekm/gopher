@@ -3,23 +3,23 @@ package main
 import "fmt"
 
 func main() {
-	/* go maps are implemented by HashTables and provide efficient provide efficient add, get and delete
+	/* go maps are implemented by HashTables and provide efficient add, get and delete
 	operations.
 	*/
 	// declaring a map
-	var codes map[string]string // var <name> map[<datatype-of-key]<value-datatype
+	//var codes map[string]string // var <name> map[<datatype-of-key]<value-datatype
 	// codes is a nil map at this point i.e. zero value of map in go is nil ( doesn't contain any key)
 	// the map is nil, and will cause a panic error if we try to add new keys.
 	// codes["en"] = "English" // run-time error : assignment to entry in nil map
-	fmt.Println(codes)
+	//fmt.Println(codes)
 
 	// to create map with key value pair we have to initialize it first
 	// how?
 	// using make func // <map_name> := map[<key_data_type>]<value_data_type>{<key-value-pairs>}
-	codes = map[string]string{"Engineering Maths": "BSMA-501", "Operating System": "PCCS-521"}
+	//codes = map[string]string{"Engineering Maths": "BSMA-501", "Operating System": "PCCS-521"}
 	// mathsCodes := codes["BSMA-501"]
 	// fmt.Println(mathsCodes)
-	fmt.Println(codes)
+	//fmt.Println(codes)
 
 	// Declaring and initializing go maps using make() which returns a initialized map
 	/*
