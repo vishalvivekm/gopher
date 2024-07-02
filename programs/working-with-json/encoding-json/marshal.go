@@ -13,7 +13,7 @@ func checkError(err error) {
 	}
 }
 func main() {
-	// enocode simple maps to json
+	// encode simple maps to json
 	student := map[string]interface{}{"name": "Vivek Vishal", "CGPA": 9.40}
 
 	// json.Marshal() encodes/marshals the 'student' map:

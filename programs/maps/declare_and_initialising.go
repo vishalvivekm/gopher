@@ -5,6 +5,9 @@ import "fmt"
 func main() {
 	/* go maps are implemented by HashTables and provide efficient add, get and delete
 	operations.
+	// go maps are unordered collections. meaning while priting a map, we may get the key-values pairs of map
+	// in different order
+
 	*/
 	// declaring a map
 	//var codes map[string]string // var <name> map[<datatype-of-key]<value-datatype
