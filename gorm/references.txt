@@ -1,0 +1,2 @@
+Gorm Config: https://gorm.io/docs/gorm_config.html
+Condition: https://gorm.io/docs/query.html#Conditions

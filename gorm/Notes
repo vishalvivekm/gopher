@@ -1,0 +1,25 @@
+Gorm naming conventions:
+- model:
+  model names and field names within the model structs: PascalCase naming conventions,
+  with the first letter of each word capitalized.
+
+- table:
+  pluralized table names and,
+  both table names and table columns:  follow snake_case naming conventions.  (to override: gorm:"column:x")
+
+  GORM Naming Convention  SQL Naming Convention
+  Model(s)             	  Table(s)
+  Field(s)                Column(s)
+  Object(s) 	          Record(s)
+
+  type Student struct {
+  PhoneNumber uint64
+  RollNumber uint64    `gorm:"column:rollnumber"`
+  Name string
+  }
+
+  CREATE TABLE students (
+      phone_numbe int,
+      rollnumber int ,
+      name text,
+  );
