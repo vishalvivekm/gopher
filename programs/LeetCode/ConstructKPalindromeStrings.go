@@ -43,5 +43,15 @@ func canConstruct(s string, k int) bool {
     //     }
     // }
 
+  // this beat 100%
+    count := [26]int{}
+    for i := 0; i < len(s); i++ {
+        count[s[i]-'a']++
+    }
+     oddCount := 0
+    for i := 0; i < 26; i++ {
+        oddCount += count[i] & 1
+    }
+
     return oddCount <= k   
 }
